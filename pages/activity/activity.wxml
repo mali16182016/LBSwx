@@ -2,11 +2,10 @@
 <view class="page-section">      
   <view class="flex-wrp" style="flex-direction:column;">
     <view class="flex-item flex-item-V demo-1" style="width: 320px; height:180px;">
-      <navigator url="/pages/camera/camera?title=camera">
-        <view style="addpic">
-          <image src="/image/plus.png" class="addpic"></image>
-        </view>
-      </navigator>
+      <!--navigator url="/pages/camera/camera?title=camera"-->
+        <image wx:if="{{imgsrc}}" src="{{imgsrc}}"></image>
+        <image wx:else src="/image/plus.png" class="addpic" bindtap="choose"></image>
+      <!--/navigator-->
     </view>
     <view class="flex-item flex-item-V demo-2">
       <input></input>
