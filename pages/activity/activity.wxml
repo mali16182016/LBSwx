@@ -1,0 +1,28 @@
+<!--pages/activity/activity.wxml-->
+<view class="page-section">      
+  <view class="flex-wrp" style="flex-direction:column;">
+    <view class="flex-item flex-item-V demo-1" style="width: 320px; height:180px;">
+      <navigator url="/pages/camera/camera?title=camera">
+        <view style="addpic">
+          <image src="/image/plus.png" class="addpic"></image>
+        </view>
+      </navigator>
+    </view>
+    <view class="flex-item flex-item-V demo-2">
+      <input></input>
+    </view>    
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+  <navigator url="/pages/endactivity/endactivity?title=endactivity">
+    <button type="primary" class="actbtn">发  布</button>
+  </navigator>  
+</view>
