@@ -1,6 +1,5 @@
 // var QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js');
 // var qqmapsdk;
-
 var point = [];
 var that;
 
