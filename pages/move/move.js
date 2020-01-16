@@ -3,6 +3,9 @@
 var point = [];
 var that;
 
+var util = require('../../utils/util.js');
+
+
 var countTooGetLocation = 0;
 var total_micro_second = 0;
 var starRun = 0;
@@ -15,15 +18,24 @@ function count_down(that) {             //计时器
       return;
    }
 
-   if (countTooGetLocation >= 100) {     //更新时间  100*10=1000=1s
-      var time = date_format(total_micro_second);      //够1s就更新时间显示
-      that.updateTime(time);
-   }
+  //  if (countTooGetLocation >= 100) {     //更新时间  100*10=1000=1s
+  //     var time = date_format(total_micro_second);      //够1s就更新时间显示
+  //     that.updateTime(time);
+  //  }
 
-   if (countTooGetLocation >= 100) {   //更新地址  每秒更新一次
+   if (countTooGetLocation >= 1000) {   //更新地址  每秒更新一次
       that.getLocation();
       that.drawline();
-      countTooGetLocation = 0;       //每够1s更新一下位置
+      that.gettime();
+      countTooGetLocation = 0; 
+
+    //  var time = util.formatTime(new Date());
+    //  console.log("time----------")
+    //  console.log(time);
+    //  this.setData({
+    //    time: time
+    //  })     
+       //每够1s更新一下位置
    }
 
 
@@ -37,20 +49,22 @@ function count_down(that) {             //计时器
   )
 }
 
-// 时间格式化输出，如03:25:19 86。每10ms都会调用一次
-function date_format(micro_second) {
-  // 秒数
-    var second = Math.floor(micro_second / 1000);
-  // 小时位
-    var hr = Math.floor(second / 3600);
-  // 分钟位
-    var min = fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
-  // 秒位
-  var sec = fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
 
 
-  return hr + ":" + min + ":" + sec + " ";
-}
+// // 时间格式化输出，如03:25:19 86。每10ms都会调用一次
+// function date_format(micro_second) {
+//   // 秒数
+//     var second = Math.floor(micro_second / 1000);
+//   // 小时位
+//     var hr = Math.floor(second / 3600);
+//   // 分钟位
+//     var min = fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+//   // 秒位
+//   var sec = fill_zero_prefix((second - hr * 3600 - min * 60));// equal to => var sec = second % 60;
+
+
+//   return hr + ":" + min + ":" + sec + " ";
+// },
 
 
 function getDistance(lat1, lng1, lat2, lng2) {    //获取里程数
@@ -88,40 +102,83 @@ Page({
     markers: [],
     covers: [],
     meters: 0.00,
-    time: "0:00:00",
+    // time: "0:00:00",
     polyline:[],
-
+     
 
     region: [],  //地理位置信息
     markers: [],
-    items: [
-      { value: 'walk', name: '步行' },
-      { value: 'bus', name: '公交车', checked: 'true' },
-      { value: 'subway', name: '地铁' },
-      { value: 'car', name: '汽车' },
-      { value: 'train', name: '火车' },
-      { value: 'bike', name: '自行车' },
-      { value: 'others', name: '其他'}
-    ]
-  },
-  checkboxChange(e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    // items: [
+    //   { value: 'walk', name: '步行' },
+    //   { value: 'bus', name: '公交车', checked: 'true' },
+    //   { value: 'subway', name: '地铁' },
+    //   { value: 'car', name: '汽车' },
+    //   { value: 'train', name: '火车' },
+    //   { value: 'bike', name: '自行车' },
+    //   { value: 'others', name: '其他'}
+    // ]    //单选
 
-    const items = this.data.items
-    const values = e.detail.value
-    for (let i = 0, lenI = items.length; i < lenI; ++i) {
-      items[i].checked = false
 
-      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
-        if (items[i].value === values[j]) {
-          items[i].checked = true
-          break
-        }
+    //从底部弹起的滚动选择器
+    array: ['步行','公交车','地铁','汽车','火车','自行车','其他'],
+    objectArray: [
+      {
+        id:'walk',
+        name:'步行'
+      },
+      {
+        id: 'bus',
+        name:'公交车'
+      },
+      {
+        id:'subway',
+        name:'地铁'
+      },
+      {
+        id: 'car',
+        name:'汽车'
+      },
+      {
+        id: 'train',
+        name: '火车'
+      },
+      {
+        id: 'bike',
+        name: '自行车'
+      },
+      {
+        id: 'els',
+        name: '其他'
       }
-    }
+    ],
+    // index: 'walk',
+  },
 
+  // radioChange(e) {
+  //   console.log('改变交通方式：', e.detail.value)
+
+  //   const items = this.data.items
+  //   const values = e.detail.value
+  //   for (let i = 0, lenI = items.length; i < lenI; ++i) {
+  //     items[i].checked = false
+
+  //     for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+  //       if (items[i].value === values[j]) {
+  //         items[i].checked = true
+  //         break
+  //       }
+  //     }
+  //   }
+
+  //   this.setData({
+  //     items
+  //   })
+  // },
+
+  blindPickerChange(e) {
+    console.log('当前交通方式', e.detail.value)
     this.setData({
-      items
+      index: e.detail.value
     })
   },
 
@@ -182,8 +239,17 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.getLocation()
+    this.starRun()
     console.log("onLoad")
-    count_down(this);
+    // count_down(this);
+
+    // var time = util.formatTime(new Date());
+    // console.log("time----------")
+    // console.log(time);              
+    // this.setData({
+    //   time: time
+    // })
+
   },
 
   //****************************
@@ -208,7 +274,17 @@ Page({
     starRun = 1;
     count_down(this);
     this.getLocation();
+    console.log('当前交通方式', 0)
     // this.drawline();
+    // if(){
+    //   wx.showToast({
+    //     title:'请选择出行方式',
+    //     icon:'choose',
+    //     duration:1000,
+    //     mask:true
+    //   })
+    // }
+    
   },
 
 
@@ -224,6 +300,14 @@ Page({
     },                           // 划线
 
 
+
+  //****************************
+  change: function () {
+    starRun = 0;
+    count_down(this);
+  },
+
+
   //****************************
   stopRun: function () {
     starRun = 0;
@@ -232,22 +316,28 @@ Page({
 
 
   //****************************
-  updateTime: function (time) {
+  // updateTime: function (time) {
 
-    var data = this.data;
-    data.time = time;
-    this.data = data;
+  //   var data = this.data;
+  //   data.time = time;
+  //   this.data = data;
 
+  //   console.log("time----------")
+  //   console.log(time);               //后台显示时间
+
+  //   this.setData({
+  //     time: time,
+  //   })
+
+  // },
+  gettime: function() {
+    var time = util.formatTime(new Date());
     console.log("time----------")
-    console.log(time);               //后台显示时间
-
+    console.log(time);
     this.setData({
-      time: time,
-    })
-
+      time: time
+    })     
   },
-
-
 //****************************
   getLocation: function () {
     that = this

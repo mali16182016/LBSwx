@@ -3,25 +3,36 @@
   <view class="flex-wrp" style="flex-direction:column;">
     <view class="demo-1">
     <view class="map-container">
-     <map id="myMap" class="my-map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}"  scale="16" style="width: 100%; height:375px;" show-location  polyline="{{polyline}}"></map>
+     <map id="myMap" class="my-map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}"  scale="16" style="width: 100%; height:300px;" show-location  polyline="{{polyline}}"></map>
     </view>
     </view>
-    <text>当前的交通方式：</text>
-    <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="radioChange">
+    <!-- <text>当前的交通方式：</text> -->
+    <!-- <view class="weui-cells weui-cells_after-title"> -->
+      <!-- <radio-group bindchange="radioChange">
         <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
           <view class="weui-cell__hd">
             <radio value="{{item.value}}" checked="true"/>
           </view>
           <view class="weui-cell__bd">{{item.name}}</view>
         </label>
-      </radio-group>
-    </view>
-    <text>\n里程数：{{meters}}km</text>
-    <text>\n\n时间：{{time}}</text>
-    <button bindtap="starRun">出发</button>
-    <button type="primary" class="movebtn" bindtap="stopRun">切换交通方式</button>
-    <button type="primary" class="movebtn" bindtap="stopRun">到达目的地</button>
+      </radio-group> -->      
 
-  </view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- <view class="weui-cells weui-cells_after-title">交通工具选择器</view> -->
+      <picker bindchange="blindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="weui-cells weui-cells_after-title">
+         点击选择出行方式：{{array[index]}}
+        </view>
+      </picker>
+    </view>
+    <text>(初始方式默认步行)</text>
+    </view><text>里程数：{{meters}}km</text>
+    <view>{{time}}</view>
+    <!-- <button bindtap="starRun">出发</button> -->
+    <!-- <button type="primary" class="movebtn" bindtap="change">暂停</button> -->
+    <!-- <button type="primary" class="movebtn" bindtap="stopRun">到达目的地</button> -->
+    <navigator url="/pages/index/index?title=index">
+    <button type="primary" class="movebtn" bindtap="stopRun">到达</button>
+  </navigator>
+  
 </view>
