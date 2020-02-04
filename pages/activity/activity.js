@@ -9,56 +9,9 @@ Page({
       { value: 'rain', name: '下雨' },
       { value: 'snow', name: '下雪' }
     ],
-    pics: []
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    pics: [],
+    img_url: [],
+    content: ''
   },
 
   /**
@@ -94,8 +47,7 @@ Page({
 
   choose: function () {//这里是选取图片的方法
     var that = this,
-    pics = this.data.pics;
-
+    pics = this.data.pics;  
     wx.chooseImage({
       count: 9 - pics.length, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
@@ -103,17 +55,60 @@ Page({
       success: function (res) {
         var imgsrc = res.tempFilePaths;
         pics = pics.concat(imgsrc);
+        //图如果满了9张，不显示加图
+        if (pics.length == 9) {
+          that.setData({
+            hideAdd: 1
+          })
+        } else {
+          that.setData({
+            hideAdd: 0
+          })
+        }
         that.setData({
           pics: pics
         });
       },
       fail: function () {
-        // fail
-        
+        // fail        
       },
       complete: function () {
         // complete
       }
     })
-  }
+  },
+  chooseimage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 9, // 默认9 
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
+      success: function (res) {
+        if (res.tempFilePaths.length > 0) {
+          //图如果满了9张，不显示加图
+          if (res.tempFilePaths.length == 9) {
+            that.setData({
+              hideAdd: 1
+            })
+          } else {
+            that.setData({
+              hideAdd: 0
+            })
+          }
+          //把每次选择的图push进数组
+          let img_url = that.data.img_url;
+          for (let i = 0; i < res.tempFilePaths.length; i++) {
+            img_url.push(res.tempFilePaths[i])
+          }
+          that.setData({
+            img_url: img_url
+          })
+        }
+      },
+      fail: function (res) {
+        console.log('上传失败')
+      }
+    })
+  },
+
 })

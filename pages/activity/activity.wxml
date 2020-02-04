@@ -1,27 +1,24 @@
 <!--pages/activity/activity.wxml-->
-<view class="page-section">      
-  <view class="flex-wrp" style="flex-direction:column;">
-    <view class="flex-item flex-item-V demo-1" style="width: 320px; height:180px;">
-      <!--navigator url="/pages/camera/camera?title=camera"-->
-        <image wx:if="{{imgsrc}}" src="{{imgsrc}}"></image>
-        <image wx:else src="/image/plus.png" class="addpic" bindtap="choose"></image>
-      <!--/navigator-->
+<view>  
+  <view class="image_content">
+    <view class='image' wx:for="{{pics}}">
+      <image class="moment_img" src="{{item}}"></image>
     </view>
-    <view class="flex-item flex-item-V demo-2">
-      <input></input>
-    </view>    
+    <view class='image' style='display:{{hideAdd?"none":"block"}}'>
+      <image bindtap="choose" class="moment_img" src='../../image/add.png'></image>
+    </view> 
   </view>
-  <view class="weui-cells weui-cells_after-title">
-        <checkbox-group bindchange="checkboxChange">
-          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
-            <view class="weui-cell__hd">
-              <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
-            </view>
-            <view class="weui-cell__bd">{{item.name}}</view>
-          </label>
-        </checkbox-group>
-      </view>
+  <view>
+    <textarea placeholder="活动记录" auto-height auto-focus="true" show-confirm-bar="true"/>
+  </view>
+  <view>
+    <checkbox-group bindchange="checkboxChange">
+      <label wx:for="{{items}}" wx:key="{{item.value}}">
+        <checkbox value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+      </label>
+    </checkbox-group>
+  </view> 
   <navigator url="/pages/endactivity/endactivity?title=endactivity">
     <button type="primary" class="actbtn">发  布</button>
-  </navigator>  
+  </navigator>
 </view>
