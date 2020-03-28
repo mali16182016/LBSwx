@@ -9,16 +9,16 @@
     </view> 
   </view>
   <view>
-    <textarea placeholder="活动记录" auto-height auto-focus="true" show-confirm-bar="true"/>
+    <textarea class="text" bindinput="input" placeholder="活动记录" auto-height auto-focus="true" show-confirm-bar="true"/>
   </view>
   <view>
     <checkbox-group bindchange="checkboxChange">
-      <label wx:for="{{items}}" wx:key="{{item.value}}">
+      <label wx:for="{{items}}" wx:key="value">
         <checkbox value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
       </label>
     </checkbox-group>
   </view> 
   <navigator url="/pages/endactivity/endactivity?title=endactivity">
-    <button type="primary" class="actbtn">发  布</button>
+    <button bindtap="send_act" type="primary" class="actbtn">发  布</button>
   </navigator>
 </view>

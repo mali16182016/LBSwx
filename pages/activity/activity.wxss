@@ -7,7 +7,7 @@ textarea {
 /*checkbox 整体大小  */
 checkbox {
   margin-left: 30rpx;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
   margin-bottom: 10rpx;
 }
 /*checkbox 选项框大小  */
@@ -32,6 +32,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
+.text{
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 5px;
+}
 .image{
  width:31%;
  height: 100px;
@@ -50,4 +55,3 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .actbtn{
   margin: 20rpx;
 }
-
