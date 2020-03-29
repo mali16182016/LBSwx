@@ -16,13 +16,13 @@ Page({
 
   input:function(e){//输入content的
     this.setData({
-      content:e.detail.value
-    })    
+      content: e.detail.value
+    })
   },
   
   checkboxChange(e) {//标签发生修改
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-    var label = e.detail.value
+    var label = '';
     const items = this.data.items
     const values = e.detail.value
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
@@ -31,6 +31,7 @@ Page({
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
         if (items[i].value === values[j]) {
           items[i].checked = true
+          label+=values[j]
           break
         }
       }
@@ -108,15 +109,33 @@ Page({
   send_act: function () {//发布按钮事件
     var that = this;
     var user_id = wx.getStorageSync('userid')
-    wx.showLoading({
-      title: '上传中',
-    })
-    that.img_upload();
+    if (that.data.pics.length){
+      console.log('图片不为空',that.data.pics);
+    }
+    else{
+      console.log('图片为空');
+    }
+    if (that.data.pics.length && that.data.label && that.data.content) {
+      wx.showLoading({
+        title: '上传中',
+      })
+      that.img_upload();
+      wx.navigateTo({
+        url: '/pages/endactivity/endactivity?title=endactivity',
+      })
+    }
+    else {
+      wx.showToast({
+        title: '您未添加图片，活动记录或者标签',
+        icon: 'none',
+        duration: 3000
+      }) 
+    }    
   },
    
   img_upload: function () {//数据上传    
     let that = this;
-    console.log('文字数据检测：', that.data.content,'标签数据检测',that.data.label);
+    console.log('文字数据检测：', that.data.content,'标签数据检测:',that.data.label);
     let pics = that.data.pics;
     let pics_ok = [];
     //由于图片只能一张一张地上传，所以用循环

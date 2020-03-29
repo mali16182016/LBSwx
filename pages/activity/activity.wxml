@@ -17,8 +17,6 @@
         <checkbox value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
       </label>
     </checkbox-group>
-  </view> 
-  <navigator url="/pages/endactivity/endactivity?title=endactivity">
-    <button bindtap="send_act" type="primary" class="actbtn">发  布</button>
-  </navigator>
+  </view>  
+  <button bindtap="send_act" type="primary" class="actbtn">发  布</button>  
 </view>

@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="enterrecord">
-    <navigator url="/pages/move/move?title=move"><button class="movinginfo">{{movingInfo.title}}</button></navigator>
-    <navigator url="/pages/activity/activity?title=activity"><button class="actinginfo">{{actingInfo.title}}</button></navigator>
+    <button class="movinginfo" bindtap="MoveBtn">{{movingInfo.title}}</button>
+    <button class="actinginfo" bindtap="ActBtn">{{actingInfo.title}}</button>
   </view> 
 </view>

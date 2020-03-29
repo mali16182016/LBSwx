@@ -3,6 +3,6 @@
   <view class="demo-1">
    <icon class="icon-box-img" type="success" size="93"></icon>
   </view>
-  <button type="primary" class="endacticitybtn">结束活动开始移行</button>
-  <button class="endacticitybtn">继续发布</button>
+  <button type="primary" class="endacticitybtn" bindtap="BacktoIndex">结束活动开始移行</button>
+  <button class="endacticitybtn" bindtap="BacktoAct">继续发布</button>
 </view>
