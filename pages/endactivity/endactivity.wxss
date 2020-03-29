@@ -1,5 +1,6 @@
 /* pages/endactivity/endactivity.wxss */
-.demo-1{
+
+.act-finish {
   width: 320px;
   height: 180px;
   margin: 0 auto;
@@ -7,14 +8,16 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  color: #FFFFFF;
+  color: #fff;
 }
-.icon-box-img{
+
+.icon-box-img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.endacticitybtn{
+
+.endacticitybtn {
   margin: 20px;
 }

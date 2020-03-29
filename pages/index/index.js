@@ -1,7 +1,7 @@
 //index.js
 const app = getApp()
 Page({
-  data: {    
+  data: {
     movingInfo: {
       title: '移行中'
     },
@@ -9,18 +9,18 @@ Page({
       title: '活动中'
     }
   },
-  
-  MoveBtn:function(){
+
+  MoveBtn: function() {
     wx.navigateTo({
       url: '/pages/move/move?title=move',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
-    })
+    });
   },
-  ActBtn:function(){
+  ActBtn: function() {
     wx.navigateTo({
       url: '/pages/activity/activity?title=activity',
-    })
+    });
   }
 })

@@ -3,5 +3,5 @@
   <view class="enterrecord">
     <button class="movinginfo" bindtap="MoveBtn">{{movingInfo.title}}</button>
     <button class="actinginfo" bindtap="ActBtn">{{actingInfo.title}}</button>
-  </view> 
+  </view>
 </view>

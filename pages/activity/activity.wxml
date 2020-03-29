@@ -1,22 +1,22 @@
 <!--pages/activity/activity.wxml-->
-<view>  
+<view>
   <view class="image_content">
     <view class='image' wx:for="{{pics}}">
       <image class="moment_img" src="{{item}}"></image>
     </view>
     <view class='image' style='display:{{hideAdd?"none":"block"}}'>
       <image bindtap="choose" class="moment_img" src='../../image/add.png'></image>
-    </view> 
+    </view>
   </view>
   <view>
-    <textarea class="text" bindinput="input" placeholder="活动记录" auto-height auto-focus="true" show-confirm-bar="true"/>
+    <textarea class="text" bindinput="input" placeholder="活动记录" auto-height auto-focus="true" show-confirm-bar="true" />
   </view>
   <view>
     <checkbox-group bindchange="checkboxChange">
       <label wx:for="{{items}}" wx:key="value">
-        <checkbox value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+        <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
       </label>
     </checkbox-group>
-  </view>  
-  <button bindtap="send_act" type="primary" class="actbtn">发  布</button>  
+  </view>
+  <button bindtap="send_act" type="primary" class="actbtn">发 布</button>
 </view>

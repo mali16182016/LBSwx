@@ -1,7 +1,7 @@
 <!--pages/endactivity/endactivity.wxml-->
 <view>
-  <view class="demo-1">
-   <icon class="icon-box-img" type="success" size="93"></icon>
+  <view class="act-finish">
+    <icon class="icon-box-img" type="success" size="93"></icon>
   </view>
   <button type="primary" class="endacticitybtn" bindtap="BacktoIndex">结束活动开始移行</button>
   <button class="endacticitybtn" bindtap="BacktoAct">继续发布</button>

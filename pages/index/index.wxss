@@ -1,16 +1,18 @@
 /**index.wxss**/
-.enterrecord{
+
+.enterrecord {
   margin-top: 400rpx;
 }
 
-.movinginfo{
+.movinginfo {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20rpx;
 }
-.actinginfo{
-  display: flex;  
+
+.actinginfo {
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20rpx;
