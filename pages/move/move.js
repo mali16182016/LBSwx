@@ -249,10 +249,6 @@ Page({
   stopRun: function() {
     starRun = 0;
     count_down(this);
-  },
-  arrive: function() {
-    starRun = 0;
-    count_down(this);
     wx.navigateBack({
       delta: 1
     })

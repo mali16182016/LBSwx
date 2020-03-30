@@ -17,5 +17,5 @@
   <!-- <button bindtap="starRun">出发</button> -->
   <!-- <button type="primary" class="movebtn" bindtap="change">暂停</button> -->
   <!-- <button type="primary" class="movebtn" bindtap="stopRun">到达目的地</button> -->
-  <button type="primary" class="movebtn" bindtap="arrive">到达</button>
+  <button type="primary" class="movebtn" bindtap="starRun">到达</button>
 </view>
