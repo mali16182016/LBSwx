@@ -1,48 +1,15 @@
 /* pages/move/move.wxss */
-@import "../../lib/weui.wxss";
-.flex-wrp{
+
+.map-container {
   margin-top: 60rpx;
-  display:flex;
-}
-.flex-item{
-  width: 320px;
-  height: 300rpx;
-  font-size: 26rpx;
-}
-.flex-item-V{
-  margin: 0 auto;
-  width: 320px;
-  height: 200rpx;
 }
 
-.addpic{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  align-items: center;
-  width: 86rpx;
-  height: 86rpx;
-  transform: translate(-50%, -50%);
+.picker {
+  padding: 10rpx;
+  border: 1rpx solid rgb(200, 200, 200);
+  color: rgb(80, 80, 80);
 }
 
-.demo-1{
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(90, 114, 90, 0.705);
-  color: #FFFFFF;
-  font-size: 36rpx;
-}
-
-.demo-2{
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  color: rgb(3, 0, 0);
-  font-size: 36rpx;
-}
-
-.movebtn{
+.movebtn {
   margin: 20rpx;
 }

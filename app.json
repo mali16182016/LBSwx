@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
+    "pages/index/index",    
     "pages/activity/activity",
     "pages/move/move",
-    "pages/endactivity/endactivity",
-    "pages/camera/camera"
+    "pages/endactivity/endactivity"
   ],
   "window": {
     "backgroundTextStyle": "light",
