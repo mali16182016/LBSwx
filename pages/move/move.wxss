@@ -1,0 +1,15 @@
+/* pages/move/move.wxss */
+
+.map-container {
+  margin-top: 60rpx;
+}
+
+.picker {
+  padding: 10rpx;
+  border: 1rpx solid rgb(200, 200, 200);
+  color: rgb(80, 80, 80);
+}
+
+.movebtn {
+  margin: 10rpx;
+}

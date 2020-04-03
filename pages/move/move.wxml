@@ -1,0 +1,20 @@
+<!--pages/move/move.wxml-->
+<view>
+  <view class="map-container" style="flex-direction:column;">
+    <map id="myMap" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" scale="16" style="width: 100%; height:300px;" show-location polyline="{{polyline}}"></map>
+  </view>
+  <view>
+    <picker bindchange="blindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        点击选择出行方式：{{array[index]}}
+      </view>
+    </picker>
+  </view>
+  <view>
+    <text>里程数：{{meters}}km</text>
+    <view>{{time}}</view>
+  </view>
+  <button size="mini" type="primary" class="movebtn" bindtap="change">暂停</button>
+  <button size="mini" type="primary" class="movebtn" bindtap="starRun">出发</button> 
+  <button size="mini" type="primary" class="movebtn" bindtap="stopRun">到达</button>
+</view>
