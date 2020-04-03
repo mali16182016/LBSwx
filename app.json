@@ -1,22 +1,20 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
+    "pages/index/index",    
     "pages/activity/activity",
     "pages/move/move",
-    "pages/endactivity/endactivity",
-    "pages/camera/camera"
+    "pages/endactivity/endactivity"
   ],
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
-  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "开始记录",
     "navigationBarTextStyle": "black"
+  },
+  "permission":{
+    "scope.userLocation":{
+      "desc":"是否同意小程序使用您的位置信息"
+    }
   },
   "debug": true,
   "style": "v2",
