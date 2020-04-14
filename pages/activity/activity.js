@@ -1,4 +1,5 @@
 // pages/activity/activity.js
+var util = require('../../utils/util.js');
 Page({
   data: {
     content: '',
@@ -28,7 +29,17 @@ Page({
         name: '下雪'
       }
     ],
-    label: ''
+    label: '',
+  },
+
+  onLoad: function(options) {
+    var startActtime = options.time;
+    console.log("活动开始时间：", startActtime);
+    if (startActtime) {
+      this.setData({
+        startActtime: startActtime
+      });
+    }
   },
 
   input: function(e) { //输入content的
@@ -157,6 +168,12 @@ Page({
     console.log('文字数据检测：', that.data.content, '标签数据检测:', that.data.label);
     let pics = that.data.pics;
     let pics_ok = [];
+    var startActtime = that.data.startActtime;
+    var endActtime = util.formatTime(new Date());
+    console.log("活动开始&结束时间", startActtime, endActtime);
+    this.setData({
+      endActtime: endActtime
+    });
     //由于图片只能一张一张地上传，所以用循环
     for (let i = 0; i < pics.length; i++) {
       wx.uploadFile({
@@ -183,6 +200,8 @@ Page({
                 images: pics_ok,
                 content: content,
                 label: label,
+                startActtime: startActtime,
+                endActtime: endActtime,
               },
               success: function(res) {
                 if (res.data.status == 1) {
