@@ -1,7 +1,13 @@
 /* pages/move/move.wxss */
 
-.map-container {
+.map {
   margin-top: 60rpx;
+  width: 100%;
+  height: 500rpx;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
 }
 
 .picker {
@@ -11,5 +17,6 @@
 }
 
 .movebtn {
-  margin: 10rpx;
+  margin: 20rpx;
+
 }
