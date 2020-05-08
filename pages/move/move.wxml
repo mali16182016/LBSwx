@@ -2,7 +2,7 @@
 <!-- <view class="page-section">       -->
    <view style="flex-direction:column;">
     <view class="map-container">
-     <map wx:if="hasMarkers" id="map" longitude="{{longitude}}" latitude="{{latitude}}" covers="{{markers}}" scale="{{scale}}"  show-location style=" width: 100%; height:300px;"polyline="{{polyline}}"></map>
+     <map wx:if="hasMarkers" id="map" longitude="{{longitude}}" latitude="{{latitude}}" covers="{{markers}}" scale="18"  show-location style=" width: 100%; height:300px;"polyline="{{polyline}}"></map>
   </view>
   <view>
     <picker bindchange="blindPickerChange" value="{{index}}" range="{{array}}" mode = "selector">

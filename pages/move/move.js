@@ -2,7 +2,6 @@ var util = require('../../utils/util.js')
 var that
 var change_res=[]
 var all_res=[]
-var oriCovers = []
 var way=[]
 var change_time=[]
 var all_time=[]
@@ -23,14 +22,15 @@ Page({
     //轨迹设置
     markers: [],
     polyline:[],
-    hasMakers: false
-    },
+    hasMakers: false,
+  },
 
   setTime() {
     that = this
     timer = setInterval(function(){
       that.getTime()
       var res = []
+      var oriCovers = that.data.markers;
       wx.getLocation({
         type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
         success: function (res) {
@@ -46,24 +46,36 @@ Page({
             iconPath: '/image/redPoint.png',
           };//在所处位置进行标记
           // markers.push(newCover);
-          var oriCovers = that.data.markers;
           oriCovers.push(newCover);
           console.log("cover集：", oriCovers)
+          that.setData({
+            latitude: res.latitude,
+            longitude: res.longitude,
+            markers: oriCovers,
+            hasMakers: true,
+            polyline: [{
+              points: all_res,
+              color: "#99FF00",
+              width: 4,
+            }], //轨迹
+          })
         }
       })
-    that.setData({
-      latitude: res.latitude,
-      longitude: res.longitude,
-      markers: oriCovers,
-      hasMakers:true,
-      polyline: [{
-        points: all_res,
-        color: "#99FF00",
-        width: 4,
-      }], //轨迹
-    })
+    
     } ,5000)
   },//计时器 周期运行函数
+
+  onLoad:function(){
+    that = this
+    wx.getLocation({
+      success: function(res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        })
+      },
+    })
+  },
 
   blindPickerChange(e) {
     console.log('交通方式为：', e.detail.value)
@@ -146,18 +158,15 @@ Page({
 
   change:function(){
     clearInterval(timer);
-    // starRun = 0;
-    // count_down(this);
   },//移行状态改变
 
   stopRun: function () {
     clearInterval(timer);
-    // starRun = 0;
-    // stopRun=0;
-    // count_down(this);
     console.log("结束记录")
   }//完成移行
+ 
 })
+
 
 // var point = [];
 // var that;
