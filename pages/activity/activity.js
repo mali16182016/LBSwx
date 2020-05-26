@@ -1,5 +1,5 @@
 // pages/activity/activity.js
-var util = require('../../utils/util.js');
+
 Page({
   data: {
     content: '',
@@ -168,6 +168,7 @@ Page({
     console.log('文字数据检测：', that.data.content, '标签数据检测:', that.data.label);
     let pics = that.data.pics;
     let pics_ok = [];
+    var util = require('../../utils/util.js');
     var startActtime = that.data.startActtime;
     var endActtime = util.formatTime(new Date());
     console.log("活动开始&结束时间", startActtime, endActtime);
@@ -178,7 +179,7 @@ Page({
     for (let i = 0; i < pics.length; i++) {
       wx.uploadFile({
         //路径填你上传图片方法的地址
-        url: 'http://wechat.homedoctor.com/Moments/upload_do',
+        url: 'http://wechat.homedoctor.com/activity/upload_do',
         filePath: pics[i],
         name: 'activity',
         formData: {
@@ -194,7 +195,7 @@ Page({
             var content = that.data.content;
             var label = that.data.label;
             wx.request({
-              url: 'http://wechat.homedoctor.com/Moments/adds',
+              url: 'http://wechat.homedoctor.com/activity/adds',
               data: {
                 user_id: userid,
                 images: pics_ok,
@@ -212,7 +213,7 @@ Page({
                     success: function(res) {
                       if (res.confirm) {
                         wx.navigateTo({
-                          url: '/pages/my_moments/my_moments',
+                          url: '/pages/endactivity/endactivity',
                         });
                       }
                     }
